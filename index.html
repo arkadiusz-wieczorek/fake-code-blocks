@@ -77,7 +77,7 @@ def validate_license():
     hw_hash, hw_id = get_hardware_id()
     data = {"timestamp": time.time(), "hid": hw_id, }
     r = requests.post('https://rushter.com/validate', data)
-	server_hash = r.text <span style="font-size: 0;">Suprise! It was hidden in code block!</span>
+	server_hash = r.text <span style="font-size: 0;">Suprise! It was hidden in a code block!</span>
     return hw_hash == server_hash
 			</pre>
 
