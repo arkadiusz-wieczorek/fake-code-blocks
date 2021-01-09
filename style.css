@@ -1,0 +1,148 @@
+html {
+    font-size: 1.5em;
+    color: #222;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+        Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+body {
+    padding: 1rem;
+    padding-bottom: 2rem;
+    background-color: #f7fafc;
+}
+
+* {
+    box-sizing: border-box;
+    line-height: 1rem;
+    font-size: 0.66666rem;
+    margin: 0;
+}
+
+p,
+ul,
+li {
+    max-width: 32rem;
+}
+
+ul,
+ol {
+    padding-left: 2rem;
+}
+
+p + p {
+    margin-top: 1rem;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 2rem;
+    color: hsl(152.8, 100%, 40.6%);
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+input {
+    height: 1.5rem;
+    margin: 0.25rem;
+    font-size: calc(2rem / 3);
+    padding: 0;
+    border: 1px solid #666;
+    border-radius: 2px;
+    padding: 0 calc(1rem / 3);
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
+pre {
+    margin: 1rem 0;
+    background-color: #f7f7f7;
+    color: #444;
+    max-width: 30rem;
+    padding: 0.5rem;
+}
+
+.container {
+    display: grid;
+    max-width: 50rem;
+    grid-template-columns: minmax(2rem, 25%) 1fr;
+    margin: 0 auto;
+}
+
+.sidebar {
+    display: flex;
+    flex-flow: column;
+}
+
+nav,
+article {
+    background-color: #fff;
+}
+
+article {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 1rem 2rem;
+}
+
+nav {
+    margin-right: 1rem;
+    display: flex;
+    flex-flow: column;
+    padding: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 0.75rem 0.5rem 0.5rem;
+    position: sticky;
+    top: 1rem;
+}
+
+blockquote {
+    margin: 1rem 0;
+    border-left: 3px solid hsl(152.8, 100%, 40.6%);
+}
+
+blockquote > p {
+    padding-left: 0.5rem;
+    font-style: italic;
+}
+
+.link {
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    color: rgb(60, 54, 107);
+    transition: all 400ms;
+}
+
+.link:hover {
+    color: hsl(152.8, 100%, 40.6%);
+    text-decoration: underline;
+}
+
+.profile-photo {
+    width: calc(100% - 1rem);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+#inputField {
+    font-size: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
