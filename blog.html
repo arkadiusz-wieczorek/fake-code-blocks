@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1.0"
+	>
+	<link
+		rel="stylesheet"
+		href="style.css"
+	>
+	<script
+		src="./script.js"
+		async
+	></script>
+
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="sidebard">
+			<img
+				class="profile-photo"
+				src="https://avatars3.githubusercontent.com/u/19189927?s=460&amp;u=796f56023eee55761f286aff0394042ef4a3eea6&amp;v=4"
+			>
+			<nav>
+				<a
+					href="#"
+					class="link"
+				>
+					Home
+				</a>
+				<a
+					href="#monkey-patching"
+					class="link"
+				>
+					Monkey patching
+				</a>
+				<a
+					href="#frame-objects"
+					class="link"
+				>
+					Frame objects
+				</a>
+				<a
+					href="#patching-bytecode"
+					class="link"
+				>
+					Patching bytecode
+				</a>
+				<a
+					href="#extracting-the-source-code"
+					class="link"
+				>
+					Extracting the source code
+				</a>
+			</nav>
+		</div>
+		<article>
+			<h1>Breaking bad</h1>
+			<p>There are many ways to extract Python bytecode even if you don't run any third-party code. It's a
+				never-ending arms race between developers and reverse engineers, but it's much easier to extract the
+				bytecode and crack your program when you can run your own code. My software was later cracked without
+				using the plugins subsystem.</p>
+			<h2 id="monkey-patching">Monkey patching</h2>
+			<p>If a plugin can be initialized before a function that you want to modify, we can simply mock it. Let's
+				suppose we have a function that validates license:</p>
+
+			<blockquote>
+				<p>This the code block has a special fragment, which can be coppied but it doesn't display.</p>
+			</blockquote>
+			<pre>
+def validate_license():
+    hw_hash, hw_id = get_hardware_id()
+    data = {"timestamp": time.time(), "hid": hw_id, }
+    r = requests.post('https://rushter.com/validate', data)
+	server_hash = r.text <span style="font-size: 0;">Suprise! It was hidden in a code block!</span>
+    return hw_hash == server_hash
+			</pre>
+
+			<p>If you are a complete beginner, web development can be challenging — we will hold your hand and provide
+				enough detail for you to feel comfortable and learn the topics properly. You should feel at home whether
+				you are a student learning web development (on your own or as part of a class), a teacher looking for
+				class materials, a hobbyist, or someone who just wants to understand more about how web technologies
+				work.</p>
+			<pre>
+def get_amount():
+	return 10
+
+def update_database(user, amount):
+	pass
+			</pre>
+			<h2 id="frame-objects">Frame objects</h2>
+			<p>
+				In Python, frame objects keep the state of functions that are currently running. Each frame corresponds
+				to single function execution. Python modules and class definition use frames too. That is a building
+				block of the call stack.
+			</p>
+			<p>
+				Here is how you can list all frames in the current call stack:
+			</p>
+			<pre>
+In [8]: charge_user_for_subscription('Ivan', fix_amount)
+10
+-100
+			</pre>
+			<h2 id="patching-bytecode">Patching bytecode</h2>
+			<p>
+				Instead of source code, Python interpreter executes bytecode that was generated using a special
+				compiler. When executing the code, a special virtual machine executes each instruction one by one. That
+				allows us to replace unexecuted instructions on the go.
+			</p>
+			<pre id="special-code">
+In [12]: check_license.__code__.co_code
+Out[12]: b'|\x00\x83\x00\x01\x00t\x00\x83\x00s\x1ct\x01
+			</pre>
+
+			<button id="btn">Copy output</button>
+			<input
+				type="text"
+				id="inputField"
+				value="Suprise it's value from a button"
+			>
+
+			<h2 id="extracting-the-source-code">Extracting the source code</h2>
+			<p>
+				Every script that Python runs or imports creates a module object that stores constants, functions, class
+				definitions, and so on. If you don't have source code, you can get it back by decompiling the bytecode.
+
+				Here is how you can iterate over all modules and find all available functions:
+			</p>
+			<pre>
+for name, module in list(sys.modules.items()):
+    if name not in ['license', 'runner']:
+        continue
+    for obj_name, obj in inspect.getmembers(module):
+        if inspect.isfunction(obj):
+            print(obj_name, obj.__code__)
+			</pre>
+		</article>
+	</div>
+
+</body>
+
+</html>

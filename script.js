@@ -8,3 +8,7 @@ document.querySelector("#btn").addEventListener("click", function (e) {
     copyText.select();
     document.execCommand("copy");
 });
+
+document.querySelector("body").addEventListener("keyup", function (e) {
+    console.log(e);
+});
